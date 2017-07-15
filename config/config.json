@@ -1,0 +1,41 @@
+{
+  "development": {
+    "db": {
+      "connection": {
+        "host": "localhost",
+        "user": "thitructuyen",
+        "password": "p@ssw0rd",
+        "port": 3306,
+        "multipleStatements": true,
+        "queryFormat": true
+      },
+      "database": "thitructuyen",
+      "users_table": "users"
+    },
+    "facebook": {}
+  },
+  "test": {
+    "connection": {
+      "host": "localhost",
+      "user": "thitructuyen",
+      "password": "p@ssw0rd",
+      "port": 3306,
+      "multipleStatements": true,
+      "queryFormat": true
+    },
+    "database": "thitructuyen",
+    "users_table": "users"
+  },
+  "production": {
+    "connection": {
+      "host": "localhost",
+      "user": "thitructuyen",
+      "password": "p@ssw0rd",
+      "port": 3306,
+      "multipleStatements": true,
+      "queryFormat": true
+    },
+    "database": "thitructuyen",
+    "users_table": "users"
+  }
+}
