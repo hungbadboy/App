@@ -6,10 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 var passport = require('passport');
-var index = require('./routes/index');
+var index = require('./routes/index')(passport);
 var users = require('./routes/users');
 var session = require('express-session');
 var app = express();
+
+// init database
+require('./config/initDB');
+require(path.join(__dirname, 'config','auth-config'))(passport); //Load passport config
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,13 +23,14 @@ app.set('view engine', 'hbs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
 app.use(passport.initialize());
 app.use(passport.session());
-require(path.join(__dirname, 'config','auth-config'))(passport); //Load passport config
+
 
 // ROUTER
 app.use('/', index);

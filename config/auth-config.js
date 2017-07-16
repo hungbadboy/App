@@ -13,8 +13,8 @@ module.exports = function(passport) {
         });
     });
 
-    //load strategy files
-    require(path.join(__dirname, 'strategies', 'local-strategy'));
+    // Load strategy files
+    require(path.join(__dirname, 'strategies', 'local-strategy'))(passport);
     //TODO: Facebook
 
     //TODO: Twitter

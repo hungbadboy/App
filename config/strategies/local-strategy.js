@@ -1,14 +1,14 @@
-var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 //var mongoose = require('mongoose');
 //var User = mongoose.model('User');
-module.exports = function () {
+module.exports = function (passport) {
     console.log("LocalStrategy called");
-    passport.use(new LocalStrategy({
+    passport.use('login', new LocalStrategy({
             usernameField: 'username',
             passwordField: 'password'
         },
         function (username, password, done) {
+        console.log('Authenticate');
             var user = {
                 'name':'hungpd',
                 'id': '1'
