@@ -1,7 +1,7 @@
 module.exports = {
     'sql': 'CREATE DATABASE IF NOT EXISTS thitructuyen; \
     USE thitructuyen; \
-    DROP TABLE user; \
+    -- DROP TABLE IF EXISTS user ; \
     CREATE TABLE IF NOT EXISTS user ( \
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT, \
     `username` VARCHAR(20) NOT NULL, \
@@ -13,7 +13,7 @@ module.exports = {
     `bid` CHAR(60),\
     `profile` CHAR(60),\
     `picture` text,\
-    `last_login` text,\
+    `last_login` timestamp,\
     `status` CHAR(1),\
     PRIMARY KEY (`id`), \
     UNIQUE INDEX `id_UNIQUE` (`id` ASC), \

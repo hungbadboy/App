@@ -6,14 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 var passport = require('passport');
-var index = require('./routes/index')(passport);
+var index = require('./routes/index');
 var users = require('./routes/users');
 var session = require('express-session');
+var SQL = require(path.join(__dirname, 'utils','sql-mapping'));
 var app = express();
 
 // init database
-require('./config/initDB');
-require(path.join(__dirname, 'config','auth-config'))(passport); //Load passport config
+require(path.join(__dirname, 'config','initDB'));
+require(path.join(__dirname, 'config','auth-config'))(passport, SQL); //Load passport config
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:false})); // session secret
 app.use(passport.initialize());
 app.use(passport.session());
 

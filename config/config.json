@@ -2,12 +2,13 @@
   "development": {
     "db": {
       "connection": {
-        "host": "localhost",
+        "host": "192.168.50.64",
         "user": "thitructuyen",
-        "password": "p@ssw0rd",
+        "password": "P@ssw0rd",
         "port": 3306,
         "multipleStatements": true,
-        "queryFormat": true
+        "queryFormat": true,
+        "database": "thitructuyen"
       },
       "database": "thitructuyen",
       "users_table": "users"
@@ -16,9 +17,9 @@
   },
   "test": {
     "connection": {
-      "host": "localhost",
+      "host": "192.168.50.64",
       "user": "thitructuyen",
-      "password": "p@ssw0rd",
+      "password": "P@ssw0rd",
       "port": 3306,
       "multipleStatements": true,
       "queryFormat": true
@@ -28,9 +29,9 @@
   },
   "production": {
     "connection": {
-      "host": "localhost",
+      "host": "192.168.50.64",
       "user": "thitructuyen",
-      "password": "p@ssw0rd",
+      "password": "P@ssw0rd",
       "port": 3306,
       "multipleStatements": true,
       "queryFormat": true
