@@ -28,7 +28,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:false})); // session secret
+app.set('trust proxy', 1); // trust first proxy
+app.use(session(
+    { secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized:true,
+        cookie: { httpOnly: true, maxAge: 2419200000, secure: false }
+    })); // session secret
 app.use(passport.initialize());
 app.use(passport.session());
 

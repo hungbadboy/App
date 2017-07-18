@@ -13,30 +13,65 @@
       "database": "thitructuyen",
       "users_table": "users"
     },
-    "facebook": {}
+    "facebook": {},
+    "send_email": {
+      "service": "gmail",
+      "port": 465,
+      "secure": true,
+      "auth": {
+        "user": "portalmashmusic@gmail.com",
+        "pass": "123456aA#"
+      }
+    }
   },
   "test": {
-    "connection": {
-      "host": "192.168.50.64",
-      "user": "thitructuyen",
-      "password": "P@ssw0rd",
-      "port": 3306,
-      "multipleStatements": true,
-      "queryFormat": true
+    "db": {
+      "connection": {
+        "host": "192.168.50.64",
+        "user": "thitructuyen",
+        "password": "P@ssw0rd",
+        "port": 3306,
+        "multipleStatements": true,
+        "queryFormat": true,
+        "database": "thitructuyen"
+      },
+      "database": "thitructuyen",
+      "users_table": "users"
     },
-    "database": "thitructuyen",
-    "users_table": "users"
+    "facebook": {},
+    "send_email": {
+      "service": "gmail",
+      "port": 465,
+      "secure": true,
+      "auth": {
+        "user": "portalmashmusic@gmail.com",
+        "pass": "123456aA#"
+      }
+    }
   },
   "production": {
-    "connection": {
-      "host": "192.168.50.64",
-      "user": "thitructuyen",
-      "password": "P@ssw0rd",
-      "port": 3306,
-      "multipleStatements": true,
-      "queryFormat": true
+    "db": {
+      "connection": {
+        "host": "192.168.50.64",
+        "user": "thitructuyen",
+        "password": "P@ssw0rd",
+        "port": 3306,
+        "multipleStatements": true,
+        "queryFormat": true,
+        "database": "thitructuyen"
+      },
+      "database": "thitructuyen",
+      "users_table": "users"
     },
-    "database": "thitructuyen",
-    "users_table": "users"
+    "facebook": {},
+    "send_email": {
+      "service": "gmail",
+      "port": 465,
+      "secure": true,
+      "auth": {
+        "user": "portalmashmusic@gmail.com",
+        "pass": "123456aA#"
+      }
+    }
   }
 }
