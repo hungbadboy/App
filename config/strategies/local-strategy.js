@@ -2,7 +2,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var path = require('path');
 var bcrypt = require('bcrypt-nodejs');
 var dbUtil = require(path.join(__dirname, '..', '..', 'utils', 'dbUtil'));
-
+console.log(bcrypt.hashSync('1'));
 module.exports = function (passport, SQL) {
     console.log("LocalStrategy called");
     passport.use('login', new LocalStrategy({
@@ -22,6 +22,7 @@ module.exports = function (passport, SQL) {
                     if(!bcrypt.compareSync(password, user.password)) {
                         return done(null, false, {message: 'Invalid username or password'});
                     } else {
+                        delete user.password;
                         return done(null, user);
                     }
                 }

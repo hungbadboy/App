@@ -17,24 +17,34 @@ router.post('/login', function (req, res, next) {
             failureRedirect: '/login'
         }, function (err, user, info) {
             if (err) {
-                return res.render('login', {title: 'Sign In', errorMessage: err.message});
+                return res.render('index', {title: 'Sign In', errorMessage: err.message});
             }
             if (!user) {
-                return res.render('login', {title: 'Sign In', errorMessage: info.message});
+                return res.render('index', {title: 'Sign In', errorMessage: info.message});
             }
             return req.logIn(user, function (err) {
                 if (err) {
-                    return res.render('login', {title: 'Sign In', errorMessage: err.message});
+                    return res.render('index', {title: 'Sign In', errorMessage: err.message});
                 } else {
-                    return res.redirect('/admin/filter');
+                    return res.redirect('/admin/users');
                 }
             });
         })(req, res, next);
 });
+
 router.get('/logout', function (req, res, next) {
     req.logout();
-    res.redirect('/');
+    req.session.destroy(function(err){
+        if(err){
+            console.log(err);
+        }
+        else
+        {
+            res.redirect('/');
+        }
+    });
 });
+
 router.get('/register', function (req, res) {
     res.render('signup', {});
 });
@@ -50,10 +60,12 @@ router.post('/signup', function (req, res) {
     });
 });
 
-router.get("/admin/filter", isLoggedIn, function (req, res) {
-//rendering stuff here
+router.get("/admin/users", isLoggedIn, function (req, res) {
+    //rendering stuff here
+
     res.render('user', {'title': 'Login successful'});
 });
+
 function isLoggedIn(req, res, next) {
     console.log("This is the authentication middleware, is req authenticated?");
     if (req.isAuthenticated()) {

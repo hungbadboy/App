@@ -8,9 +8,9 @@
         "port": 3306,
         "multipleStatements": true,
         "queryFormat": true,
-        "database": "thitructuyen"
+        "database": "abc"
       },
-      "database": "thitructuyen",
+      "database": "abc",
       "users_table": "users"
     },
     "facebook": {},

@@ -2,10 +2,18 @@
 <html>
   <head>
     <title>{{title}}</title>
+      <!-- 1. skin -->
+      <link rel="stylesheet" href="//releases.flowplayer.org/7.0.4/skin/skin.css">
+
+      <!-- 2. jquery library - required for video tag based installs -->
+      <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+      <!-- Flowplayer library -->
+      <script src="//releases.flowplayer.org/7.0.4/flowplayer.min.js"></script>
+      <!-- Flowplayer hlsjs engine (light) -->
+      <script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.light.min.js"></script>
   </head>
   <body>
     {{{body}}}
-    <a href="/logout">Logout</a>
   </body>
 </html>

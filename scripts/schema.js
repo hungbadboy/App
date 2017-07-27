@@ -1,7 +1,6 @@
 module.exports = {
-    'sql': 'CREATE DATABASE IF NOT EXISTS thitructuyen; \
-    USE thitructuyen; \
-    -- DROP TABLE IF EXISTS user ; \
+    'sql': 'CREATE DATABASE IF NOT EXISTS abc; \
+    USE abc; \
     CREATE TABLE IF NOT EXISTS user ( \
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT, \
     `username` VARCHAR(20) NOT NULL, \

@@ -6,3 +6,18 @@ body {
 a {
   color: #00B7FF;
 }
+
+.flowplayer {
+  background-color: #2f2f4f;
+}
+
+.flowplayer .fp-color-play {
+  fill: #eee;
+}
+
+/* hide no-op control icons during pre-roll */
+.flowplayer.video0 .fp-playbtn,
+.flowplayer.video0 .fp-volume,
+.flowplayer.video0 .fp-fullscreen {
+  display: none;
+}
