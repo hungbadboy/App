@@ -22,7 +22,8 @@
         "user": "portalmashmusic@gmail.com",
         "pass": "123456aA#"
       }
-    }
+    },
+    "keyAuthorFireBase":""
   },
   "test": {
     "db": {
