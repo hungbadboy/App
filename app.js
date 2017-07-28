@@ -12,6 +12,17 @@ var playVideo = require('./routes/play-video');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 var env = process.env.NODE_ENV || "development";
+var firebase = require("firebase");
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyB7f1mrp699p5YAijH6ZzTjlyttKbuVq0o",
+    authDomain: "app-b8c15.firebaseapp.com",
+    databaseURL: "https://app-b8c15.firebaseio.com",
+    projectId: "app-b8c15",
+    storageBucket: "app-b8c15.appspot.com",
+    messagingSenderId: "304920723088"
+};
+firebase.initializeApp(config);
 var options = require(path.join(__dirname, 'config', 'config.json'))[env].db.connection;
 options.checkExpirationInterval = 30000;
 var sessionStore = new MySQLStore(options);
