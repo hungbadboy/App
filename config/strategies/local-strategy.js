@@ -1,9 +1,8 @@
 var LocalStrategy = require('passport-local').Strategy;
 var path = require('path');
 var bcrypt = require('bcrypt-nodejs');
-var dbUtil = require(path.join(__dirname, '..', '..', 'utils', 'dbUtil'));
 console.log(bcrypt.hashSync('1'));
-module.exports = function (passport, SQL) {
+module.exports = function (passport, SQL, dbUtil) {
     console.log("LocalStrategy called");
     passport.use('login', new LocalStrategy({
             usernameField: 'username',
@@ -13,20 +12,19 @@ module.exports = function (passport, SQL) {
         function (req, username, password, done) {
             console.log('Authenticate');
             dbUtil.select(SQL.FIND_USER_BY_USERNAME, [username], null, function (err, data) {
-                console.log(data);
-                var user = data;
-                if(user === null) {
-                    return done(null, false, {message: 'Invalid username or password'});
-                } else {
-                    user = data[0];
-                    if(!bcrypt.compareSync(password, user.password)) {
-                        return done(null, false, {message: 'Invalid username or password'});
-                    } else {
-                        delete user.password;
-                        return done(null, user);
-                    }
+                if (err) {
+                    return done(err);
                 }
-                return done(err, user);
+
+                if (!data.length) {
+                    return done(null, false, req.flash('loginMessage', 'No user found.'));
+                }
+
+                if(!bcrypt.compareSync(password, data[0].password)) {
+                    return done(null, false, req.flash('loginMessage', 'Wrong username or password.'));
+                }
+
+                return done(err, data[0]);
             });
 
         })

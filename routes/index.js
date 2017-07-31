@@ -4,7 +4,6 @@ var path = require('path');
 var firebase = require("firebase");
 var router = express.Router();
 var User = require(path.join(__dirname, '..', 'models', 'user'));
-
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index', {title: 'Express'});
@@ -33,24 +32,20 @@ router.post('/login', function (req, res, next) {
             });
         })(req, res, next);
 });
-
 router.get('/logout', function (req, res, next) {
     req.logout();
-    req.session.destroy(function(err){
-        if(err){
+    req.session.destroy(function (err) {
+        if (err) {
             console.log(err);
         }
-        else
-        {
+        else {
             res.redirect('/');
         }
     });
 });
-
 router.get('/register', function (req, res) {
     res.render('signup', {});
 });
-
 router.post('/signup', function (req, res) {
     User.register(new User({username: req.body.username}), req.body.password, function (err, account) {
         if (err) {
@@ -63,18 +58,33 @@ router.post('/signup', function (req, res) {
 });
 
 router.get("/admin/users", isLoggedIn, function (req, res) {
-    //rendering stuff here
-
     res.render('user', {'title': 'Login successful'});
 });
-
 function isLoggedIn(req, res, next) {
     console.log("This is the authentication middleware, is req authenticated?");
     if (req.isAuthenticated()) {
         return next();
     } else {
-        // IF A USER ISN'T LOGGED IN, THEN REDIRECT THEM SOMEWHERE
         res.redirect('/');
     }
 }
+// Authentication facebook
+router.get('/auth/facebook', passport.authenticate('facebook'), function (res, res) {
+});
+
+router.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {failureRedirect: '/login'}),
+    function (req, res) {
+        // Successful authentication, redirect home.
+        return res.redirect('/admin/users');
+    });
+
+// Authentication google
+router.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+router.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function(req, res) {
+        return res.redirect('/admin/users');
+    });
+
 module.exports = router;

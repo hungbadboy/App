@@ -13,7 +13,27 @@
       "database": "abc",
       "users_table": "users"
     },
-    "facebook": {},
+    "facebook": {
+      "clientID": "1389112787844809",
+      "clientSecret": "cbdccd0b16afde0236600971dd9d7414",
+      "callbackURL": "http://localhost:3000/auth/facebook/callback",
+      "profileFields": [
+        "id",
+        "email",
+        "gender",
+        "link",
+        "locale",
+        "name",
+        "timezone",
+        "updated_time",
+        "verified"
+      ]
+    },
+    "google": {
+      "clientID": "201788857543-39f3slqkaadqsh1t5urfm97640filk8t.apps.googleusercontent.com",
+      "clientSecret": "Az_2IeQW8w3GnMh1AlBQ_w_w",
+      "callbackURL": "http://localhost:3000/auth/google/callback"
+    },
     "send_email": {
       "service": "gmail",
       "port": 465,
@@ -23,7 +43,7 @@
         "pass": "123456aA#"
       }
     },
-    "keyAuthorFireBase":""
+    "keyAuthorFireBase": ""
   },
   "test": {
     "db": {

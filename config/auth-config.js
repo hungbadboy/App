@@ -1,37 +1,27 @@
 var path = require('path');
-var User = require(path.join(__dirname, '..', 'models', 'user'));
+var dbUtil = require(path.join(__dirname, '..', 'utils', 'dbUtil'));
 
 module.exports = function(passport, SQL) {
 
     passport.serializeUser(function(user, done){
         console.log('serializeUser: ' + user.id);
-        done(null, user);
+        done(null, user.id);
     });
-    passport.deserializeUser(function(user, done){
-        console.log("deserializeUser called", user);
-        // // User.findById(id, function (err, user) {
-        // var user = {
-        //     id: 1,
-        //         username: 'hungpd@tinhvan.com',
-        //         fist_name: 'hung',
-        //         last_name: 'phung danh',
-        //         email: 'hungpd@tinhvan.com',
-        //         gen: 'F',
-        //         bid: '02111985',
-        //         profile: 'abc',
-        //         picture: 'abc',
-        //         last_login: '2017-07-17T03:20:23.000Z',
-        //         status: '1' };
-        var err = null;
-            done(err, user);
-        // });
+    passport.deserializeUser(function(id, done){
+        console.log("deserializeUser called", id);
+        var query = 'SELECT * FROM user WHERE id=?';
+        dbUtil.select(query, [id], null, function (err, data) {
+            done(null, data[0]);
+        });
+
     });
 
     // Load strategy files
-    require(path.join(__dirname, 'strategies', 'local-strategy'))(passport, SQL);
+    require(path.join(__dirname, 'strategies', 'local-strategy'))(passport, SQL, dbUtil);
     //TODO: Facebook
-
+    require(path.join(__dirname, 'strategies', 'facebook-strategy'))(passport, SQL, dbUtil);
     //TODO: Twitter
 
     //TODO: Google
+    require(path.join(__dirname, 'strategies', 'google-strategy'))(passport, SQL, dbUtil);
 }
